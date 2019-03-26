@@ -102,11 +102,11 @@ img { width: 100%; display: block; }
 
 @media (min-width: 992px) and (max-width: 1199.98px) { 
     html { font-size: 9px; }
-    .nav { width: 15%; } }
+    .nav { width: 10%; } }
 
 @media (min-width: 1200px) and (max-width: 1499.98px) { 
     html { font-size: 10px; }
-    .nav { width: 15%; } }
+    .nav { width: 8%; } }
 
 
 /* - END default css - */
@@ -450,7 +450,8 @@ img { width: 100%; display: block; }
     .slider__content { padding: 20px 10px 0 10px; }
     .arrows__item { display: none; } }
 
-@media (min-width: 1200px) and (max-width: 1499.98px) {  }
+@media (min-width: 1200px) and (max-width: 1499.98px) { 
+    .slider__border { width: 80%; } }
 
 /* - END block window - */
 
