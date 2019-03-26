@@ -1,4 +1,14 @@
 $(document).ready(function () {
+    var fixedSlide = 1;
+     var title = {
+            "welcome": "Глявная",
+            "quality": "Цели",
+            "opportunities": "Возможности",
+            "block": "Блоки",
+            "journal": "HR Journal",
+            "m-footer": "Контакты"
+        }
+
     new fullpage('#fullpage', {
         anchors: ['welcome', 'quality', 'opportunities', 'block', 'journal', 'm-footer'],
         menu: "#menu",
@@ -8,14 +18,7 @@ $(document).ready(function () {
         },
         });
 
-        var title = {
-            "welcome": "Глявная",
-            "quality": "Цели",
-            "opportunities": "Возможности",
-            "block": "Блоки",
-            "journal": "HR Journal",
-            "m-footer": "Контакты"
-        }
+       
     /*
     *   START
     *   For slider
@@ -84,25 +87,32 @@ $(document).ready(function () {
 
     */
 
-    $(".cross-sells .products").swipe( {
+    $(".slider__wrapper").swipe( {
         swipeLeft: function() {
-            $('.cross-sells .products li:nth-child(1)').removeClass("anim")
-            $('.cross-sells .products li:nth-child(2)').addClass("anim")
+            console.log(fixedSlide);
+            if ( activeSlide && ( fixedSlide < 3 ) && ( fixedSlide > 0 ) ) {
+               accessSlide = false;
+               $(".arrows__item_right").off("click", NextSlide);
 
-            $('.cross-sells .products').animate({
-                'margin-left' : -$(window).width() / 2 - (widthItem * 15 / 100), //-widthItem + (widthItem * 10 / 100)
-            }, duration * 2, function () {
-                //$('.cross-sells .products li:nth-child(1)').css('opacity', '.4');
-                console.log("callback"); } );
-            },
+               var margin = $(slider).css("margin-left");
+               var result = parseFloat(margin) - parseFloat($(".slider__item").width());
+               $(slider).animate( {"margin-left": result}, speedSlider, function () { accessSlide = true; $(".arrows__item_right").on("click", NextSlide); } );
+
+               fixedSlide++;
+           } 
+        },
         swipeRight: function() {
-            $('.cross-sells .products li:nth-child(2)').removeClass("anim")
-            $('.cross-sells .products li:nth-child(1)').addClass("anim")
+            console.log(fixedSlide);
+            if ( activeSlide && ( fixedSlide <= 3 ) && ( fixedSlide > 1 ) ) {
+                accessSlide = false;
+                $(".arrows__item_left").off("click", PrevSlide);
 
-            $('.cross-sells .products').animate({
-                'margin-left' : (widthItem * 15 / 100) / 2 + (widthItem * 15 / 100), //(widthItem * 10 / 100) / 2,
-            }, duration * 2, function () {
-                console.log("callback"); } );
+                var margin = $(slider).css("margin-left");
+                var result = parseFloat(margin) + parseFloat($(".slider__item").width());
+                $(slider).animate( {"margin-left": result}, speedSlider, function () { accessSlide = true; $(".arrows__item_left").on("click", PrevSlide); }  );
+
+                fixedSlide--;
+            }
         },
         allowPageScroll: "vertical"
     });
