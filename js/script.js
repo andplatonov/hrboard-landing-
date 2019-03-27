@@ -1,7 +1,7 @@
 $(document).ready(function () {
     var fixedSlide = 1;
      var title = {
-            "welcome": "Глявная",
+            "welcome": "Главная",
             "quality": "Цели",
             "opportunities": "Возможности",
             "block": "Блоки",
